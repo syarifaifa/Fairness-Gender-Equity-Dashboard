@@ -57,36 +57,9 @@ st.altair_chart(chart_gender, use_container_width=True)
 st.caption(f"Total students: {df.shape[0]} (Male {df_counts.loc[df_counts['Gender']=='Male','Count'].values[0]}, Female {df_counts.loc[df_counts['Gender']=='Female','Count'].values[0]})")
 
 # -----------------------------
-# Raw Score Distribution
-# -----------------------------
-st.header("2. Raw Score Distribution by Gender")
-dist_chart = alt.Chart(df).mark_area(opacity=0.5).encode(
-    x=alt.X("RawScore:Q", bin=alt.Bin(maxbins=30), title="Raw Score"),
-    y=alt.Y("count():Q", title="Count"),
-    color="Gender:N",
-    tooltip=["Gender","count()"]
-)
-st.altair_chart(dist_chart, use_container_width=True)
-
-# -----------------------------
-# Heatmap of Student Responses
-# -----------------------------
-st.header("3. Student Responses Heatmap (0=Wrong,1=Correct, NaN=Not Attempted)")
-df_melt = df.melt(id_vars=["ID","Gender"], value_vars=[f"Item{i}" for i in range(1,19)],
-                  var_name="Item", value_name="Response")
-heatmap = alt.Chart(df_melt).mark_rect().encode(
-    x="Item:N",
-    y=alt.Y("ID:N", sort=None),
-    color=alt.Color("Response:Q", scale=alt.Scale(domain=[0,1], range=["#D95F02","#1B9E77"]), 
-                    legend=alt.Legend(title="Response")),
-    tooltip=["ID","Item","Response"]
-)
-st.altair_chart(heatmap, use_container_width=True)
-
-# -----------------------------
 # Item Difficulty (simulated same as original)
 # -----------------------------
-st.header("4. Item Difficulty")
+st.header("2. Item Difficulty")
 item_difficulty = np.array([-0.18, -0.12, -0.09, -0.06, -0.03, 0.00,
                             0.02, 0.04, 0.05, 0.07, 0.09, 0.10,
                             0.12, 0.14, 0.16, 0.18, 0.20, 0.23])
@@ -103,7 +76,7 @@ st.caption("Item difficulty range: −0.18 to +0.23 logits, mean ≈ 0.00")
 # -----------------------------
 # DIF Analysis (simulated same as original)
 # -----------------------------
-st.header("5. Differential Item Functioning (Gender)")
+st.header("3. Differential Item Functioning (Gender)")
 dif_values = np.array([-0.08, -0.07, -0.06, -0.05, -0.04, -0.03,
                        -0.02, -0.01, 0.00, 0.01, 0.02, 0.03,
                         0.04, 0.05, 0.06, 0.07, 0.08, -0.02])
@@ -122,7 +95,7 @@ st.caption("DIF Contrast Range (Logits): −0.08 to +0.08 — No significant gen
 # -----------------------------
 # Summary Metrics
 # -----------------------------
-st.header("6. Summary Metrics (Rasch)")
+st.header("4. Summary Metrics (Rasch)")
 st.write("""
 **Item Statistics**
 - Item Reliability: 0.95
@@ -139,3 +112,4 @@ st.write("""
 - DIF Contrast Range: −0.08 to +0.08
 - Significant DIF Items: 0
 """)
+
