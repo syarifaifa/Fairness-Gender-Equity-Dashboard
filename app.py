@@ -113,3 +113,39 @@ st.write("""
 - Significant DIF Items: 0
 """)
 
+# -----------------------------
+# RESUME / CONCLUSION
+# -----------------------------
+st.header("7. Resume & Conclusion")
+
+st.success("""
+**Key Findings from Rasch Analysis (212 Students):**
+
+1. **Balanced Gender Participation**  
+   The assessment involved **212 students**, consisting of **106 male** and **106 female** students, 
+   ensuring equal representation across genders.
+
+2. **Well-Targeted Item Difficulty**  
+   Item difficulty ranged from **−0.18 to +0.23 logits**, with a mean centered at **0.00 logits**, 
+   indicating that the test was optimally aligned with the average student ability.
+
+3. **High Measurement Quality**  
+   - Item Reliability: **0.95**  
+   - Item Separation: **4.48**  
+   - Person Reliability: **0.91**  
+   These values indicate strong measurement precision and clear differentiation among student abilities.
+
+4. **Good Model–Data Fit**  
+   Infit and Outfit MNSQ statistics fell within the acceptable range (**0.5–1.5**), 
+   supporting the validity of the Rasch measurement model.
+
+5. **Gender Fairness Confirmed**  
+   Differential Item Functioning (DIF) analysis showed a contrast range of **−0.08 to +0.08 logits**, 
+   with **no statistically significant gender bias** detected across all 18 items.
+
+**Conclusion:**  
+This Rasch-based assessment demonstrates **high reliability, good construct validity, 
+and gender-neutral measurement**, making it suitable for fair and equitable evaluation 
+in educational contexts.
+""")
+
